@@ -1,12 +1,12 @@
 use piston_window::types::Color;
 use piston_window::*;
 use rand::{Rng, thread_rng};
-use crate::draw::{draw_block, draw_rectangle};
+use crate::draw::{ draw_circle, draw_rectangle};
 use crate::snake::{Direction, Snake};
 
 const BORDER_COLOR: Color = [0.0, 0.0, 0.0, 1.0];
 const FOOD_COLOR: Color = [0.8, 0.0, 0.0, 1.0];
-const MOVING_PERIOD: f64 = 0.2;
+const MOVING_PERIOD: f64 = 0.1;
 const GAME_OVER: Color = [0.9, 0.0, 0.0, 0.5];
 const RESTART_TIME: f64 = 1.0;
 
@@ -41,7 +41,7 @@ impl Game {
     pub fn draw(&self, con: &Context, g: &mut G2d) {
         self.snake.draw(con, g);
         if self.food_exists {
-            draw_block(FOOD_COLOR, self.food_x, self.food_y, con, g);
+            draw_circle(FOOD_COLOR, self.food_x, self.food_y, con, g);
         }
         draw_rectangle(BORDER_COLOR, 0, 0, self.width, 1, con, g);
         draw_rectangle(BORDER_COLOR, 0, self.height - 1, self.width, 1, con, g);

@@ -13,7 +13,7 @@ use crate::game::Game;
 const BACK_COLOR: Color = [0.2, 0.2, 0.2, 1.0];
 
 fn main() {
-    let (width, height) = (30, 30);
+    let (width, height) = (50, 30);
     let mut window: PistonWindow = WindowSettings::new("Snake", [to_coords_u32(width), to_coords_u32(height)])
         .exit_on_esc(true).build().unwrap();
 

@@ -14,6 +14,18 @@ pub enum Direction {
     Right
 }
 
+macro_rules! either {
+    ($test:expr => $true_expr:expr; $false_expr:expr) => {
+        if $test {
+            $true_expr
+        }
+        else {
+            $false_expr
+        }
+    }
+}
+
+
 impl Direction {
     pub fn opposite(&self) -> Direction {
         match *self {
@@ -51,8 +63,8 @@ impl Snake {
     }
 
     pub fn draw(&self, con: &Context, g: &mut G2d) {
-        for block in &self.body {
-            draw_block(SNAKE_COLOR, block.x, block.y, con, g)
+        for (i, block) in self.body.iter().enumerate() {
+            draw_block(either!(i != 0 => SNAKE_COLOR; [0.8,0.8,0.0,1.0]), block.x, block.y, con, g)
         }
     }
 
