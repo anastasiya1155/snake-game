@@ -3,6 +3,7 @@ extern crate rand;
 
 mod draw;
 mod game;
+mod snake;
 
 use piston_window::types::Color;
 use piston_window::*;
@@ -27,5 +28,9 @@ fn main() {
         event.update(|arg| {
             game.update(arg.dt);
         });
+
+        if let Some(Button::Keyboard(key)) = event.press_args() {
+            game.key_pressed(key)
+        }
     }
 }
